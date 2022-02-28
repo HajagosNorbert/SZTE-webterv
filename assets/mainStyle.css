@@ -29,10 +29,24 @@
 .home {
   flex: 1;
   font-size: 1.5rem;
+  order: 0;
 }
 
 .navbar-toggle {
   display: none;
+}
+
+.navbar-link {
+  border: 1px solid white;
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+
+.navbar-link.first {
+  border-left-width: 0;
+}
+.navbar-link.last {
+  border-right-width: 0;
 }
 
 .navbar-link:hover {
@@ -53,6 +67,7 @@
     display: none;
     width: 100%;
     text-align: center;
+    border-width: 0;
   }
 
   .navbar-link.active {
