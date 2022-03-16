@@ -1,0 +1,17 @@
+:root {
+  --smallscreen: 600px;
+  --bgc: #313552;
+  --action-color: #B8405E;
+  --action-color-secondary: #913a50;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  body, html{
+    background-color: var(--bgc);
+  }
