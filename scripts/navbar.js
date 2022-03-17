@@ -17,6 +17,6 @@ toggleButton.addEventListener("click", () => {
 
   const navbarLinkArray = Array.from(navbarLinks);
   navbarLinkArray.forEach((link) => {
-    link.classList.toggle("active");
+    link.classList.toggle("drawn-out");
   });
 });

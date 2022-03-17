@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/debugging.png" type="image/icon type" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./css/genericStyle.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/reporting.css" />
+    <title>Hibabejelentő - regisztráció</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="navbar">
+          <li class="home">
+            <a href="./index.html"><div>Suli</div></a>
+          </li>
+          <li class="navbar-toggle"><i class="fa fa-bars"></i></li>
+          <li class="navbar-link active first">
+            <a href="./reporting.html"><div>Hibabejelentés</div></a>
+          </li>
+          <li class="navbar-link">
+            <a href="./login.html"><div>Bejelentkezés</div></a>
+          </li>
+          <li class="navbar-link">
+            <a href="#"><div>Kijelentkezés</div></a>
+          </li>
+          <li class="navbar-link last">
+            <a href="./registration.html"><div>Regisztráció</div></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <div class="login">
+          <form action="#" method="post">
+            <div class="row">
+              <input
+                type="text"
+                name="username"
+                placeholder="Probléma megnevezése"
+                required
+              />
+            </div>
+            <div class="row">
+              <fieldset>
+                <legend>Mivel van probléma?</legend>
+
+                <input
+                  type="radio"
+                  name="problem_type"
+                  value="technical"
+                  id="technical"
+                  required
+                />
+                <label for="technical">Műszaki berendezés </label>
+                <input
+                  type="radio"
+                  name="problem_type"
+                  value="non_technical"
+                  id="non_technical"
+                  required
+                />
+                <label for="non_technical">Nem műszaki berendezés</label>
+
+                <input
+                  type="radio"
+                  name="problem_type"
+                  value="digital"
+                  id="digital"
+                  required
+                />
+                <label for="digital">Digitális rendszer</label>
+
+                <input
+                  type="radio"
+                  name="problem_type"
+                  id="other"
+                  value="other"
+                  required
+                />
+                <label for="other">Egyéb</label>
+              </fieldset>
+            </div>
+            <div class="row">
+              <input
+                type="checkbox"
+                id="blocking"
+                name="blocking"
+                value="blocking"
+                required
+              />
+              <label for="blocking">Megakadályoz a munkában </label>
+            </div>
+            <div class="row">
+              <label for="started_at">Kezdődött:</label>
+              <input
+                type="datetime-local"
+                id="started_at"
+                name="started_at"
+                required
+              />
+            </div>
+            <div class="row">
+              <input
+                type="number"
+                name="classroom"
+                placeholder="Terem száma (ha ott a probléma)"
+              />
+            </div>
+            <div class="row">
+              <textarea
+                placeholder="Probléma leírása"
+                name="description"
+                rows="5"
+                cols="60"
+                required
+              ></textarea>
+            </div>
+
+            <div class="row button">
+              <input type="submit" name="reporting" value="Küldés" required />
+            </div>
+
+            <div class="row button">
+              <input type="reset" name="reset" value="Visszaállítás" required />
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <script type="text/javascript" src="./scripts/navbar.js"></script>
+    </footer>
+  </body>
+</html>

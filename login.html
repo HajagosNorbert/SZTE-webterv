@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/debugging.png" type="image/icon type" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./css/genericStyle.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/login.css" />
     <title>Hibabejelentő - bejelentkezés</title>
-    <link rel="stylesheet" href="./css/genericStyle.css">
-    <link rel="stylesheet" href="./css/login.css">
-</head>
-<body>
-    <div class="login">
-       <img width="25%" src="img/login.png">
-        <form action="#">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul class="navbar">
+          <li class="home">
+            <a href="./index.html"><div>Suli</div></a>
+          </li>
+          <li class="navbar-toggle"><i class="fa fa-bars"></i></li>
+          <li class="navbar-link first">
+            <a href="./reporting.html"><div>Hibabejelentés</div></a>
+          </li>
+          <li class="navbar-link first active">
+            <a href="./login.html"><div>Bejelentkezés</div></a>
+          </li>
+          <li class="navbar-link">
+            <a href="#"><div>Kijelentkezés</div></a>
+          </li>
+          <li class="navbar-link last">
+            <a href="./registration.html"><div>Regisztráció</div></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <div class="login">
+          <img width="25%" src="img/login.png" />
+          <form action="#" method="post">
             <div class="row">
-                <input type="text" name="username" placeholder="Felhasználónév" required>
+              <input
+                type="text"
+                name="username"
+                placeholder="Felhasználónév"
+                required
+              />
             </div>
             <div class="row">
-                <input type="text" name="password" placeholder="Jelszó" required>
+              <input
+                type="password"
+                name="password"
+                placeholder="Jelszó"
+                required
+              />
             </div>
             <div class="row button">
-                <input type="submit" name="login" value="Belépés" required>
+              <input type="submit" name="login" value="Belépés" required />
             </div>
-        </form>
-    </div>
-</body>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <script type="text/javascript" src="./scripts/navbar.js"></script>
+    </footer>
+  </body>
 </html>
