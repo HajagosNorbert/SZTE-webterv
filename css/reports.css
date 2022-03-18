@@ -1,0 +1,36 @@
+table {
+  border-collapse: collapse;
+  width: 60%;
+  margin: 10rem auto;
+}
+
+caption {
+  font-size: x-large;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  border: 1px solid white;
+  vertical-align: middle;
+  text-align: center;
+  padding: 25px 5px;
+}
+
+th {
+  background-color: #2eb086;
+  color: white;
+  font-size: 20px;
+}
+tr {
+  background-color: #2a2c44;
+}
+/* minden páros sornak adunk háttérszínt */
+tr:nth-of-type(even) {
+  background-color: #313552;
+}
+
+/* ha a kurzor egy sor fölött áll, megváltoztatjuk a sor háttérszínét */
+tr:hover {
+  background-color: #ccc;
+}
