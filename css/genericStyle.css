@@ -17,6 +17,7 @@ html {
   color: white;
 }
 
-main {
+body {
+  /* To not overlap the content with the position: fixed navbar */
   margin-top: 4rem;
 }
