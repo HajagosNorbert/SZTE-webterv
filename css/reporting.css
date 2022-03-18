@@ -70,7 +70,9 @@ form .button input:hover {
 }
 
 @media (max-width: 450px) {
-  input[type="submit"] {
-    float: none;
+  .login form .button input {
+    clear: left;
+    width: 100%;
+    margin: 0.5rem 0;
   }
 }
