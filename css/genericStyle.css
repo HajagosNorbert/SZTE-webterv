@@ -16,3 +16,7 @@ html {
   background-color: var(--bgc);
   color: white;
 }
+
+main {
+  margin-top: 4rem;
+}

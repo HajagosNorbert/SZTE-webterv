@@ -4,6 +4,9 @@
   align-items: center;
   list-style-type: none;
   background-color: #2eb086;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 
 .navbar div {
