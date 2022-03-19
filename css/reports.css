@@ -61,7 +61,6 @@ tr:hover {
 		left: 6px;
 		width: 45%; 
 		padding-right: 10px; 
-		white-space: nowrap;
 	}
 
 	td:nth-of-type(1):before { content: "Név:"; }
