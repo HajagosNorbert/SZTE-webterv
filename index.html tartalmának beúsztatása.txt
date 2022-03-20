@@ -1,9 +1,0 @@
-index.html tartalom beúsztatása
-strong tag a szoftveres vagy hardveres hibákat szövegre
-text-shadow
-box-shadow
-
-menübe az icon transformálása egér rávitelkor
-
-
-footer készítése

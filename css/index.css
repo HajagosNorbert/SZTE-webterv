@@ -9,7 +9,7 @@ main > section {
 section:nth-child(2) {
   width: 100px;
 }
-section > h1 {
+section > h1:nth-child(1) {
   margin-bottom: 35px;
     text-shadow: 2px 2px 5px #2eb086;
 }
