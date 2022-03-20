@@ -21,3 +21,12 @@ body {
   /* To not overlap the content with the position: fixed navbar */
   margin-top: 4rem;
 }
+
+footer{
+  background-color: #2eb086;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

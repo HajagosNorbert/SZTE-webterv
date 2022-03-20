@@ -31,6 +31,7 @@
   color: white;
   font-size: 1.6rem;
   padding: 0 2rem;
+  transition: transform .7s ease-in-out;
 }
 
 .navbar-link {
@@ -52,6 +53,11 @@
 
 .navbar-link:hover {
   background-color: #20916d;
+}
+.navbar-toggle:hover i{
+  color: #313552;
+    transition: 0.9s;
+    transform: rotateY(180deg);
 }
 
 @media (max-width: 900px) {
