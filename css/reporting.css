@@ -71,8 +71,11 @@ form .button input:hover {
 
 @media (max-width: 450px) {
   .login form .button input {
-    clear: left;
     width: 100%;
     margin: 0.5rem 0;
+  }
+
+  #reset {
+    clear: left;
   }
 }

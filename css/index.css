@@ -1,24 +1,24 @@
-main > section{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+main > section {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 5s;
 }
-section:nth-child(2){
-    width: 100px;;
+section:nth-child(2) {
+  width: 100px;
 }
-section > h1{
-    margin-bottom: 35px;
+section > h1 {
+  margin-bottom: 35px;
     text-shadow: 2px 2px 5px #2eb086;
 }
-section > h1::first-letter{
-    color: #2eb086;
-    font-size: 35px;
+section > h1::first-letter {
+  color: #2eb086;
+  font-size: 35px;
 }
 section > h1 + p {
-    text-align: justify;
+  text-align: justify;
 }
 #floating {
     animation: fadeInAnimation ease 3s;
@@ -32,4 +32,29 @@ section > h1 + p {
     100% {
         opacity: 1;
     }
+}
+
+iframe,
+audio {
+  display: block;
+  margin: 2rem auto;
+}
+
+@media print {
+  .navbar {
+    display: none;
+  }
+
+  h1 {
+    page-break-after: avoid;
+  }
+
+  iframe,
+  audio {
+    display: none;
+  }
+
+  @page {
+    margin: 1cm;
+  }
 }
