@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once 'classes/User.php';
+$user = new User();
+
+if(isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $login = json_decode($user->login($username,$password));
+}
+
+?>
 <!DOCTYPE html>
 <html lang="hu">
   <head>
@@ -14,37 +26,12 @@
     <link rel="stylesheet" href="./css/login.css" />
     <title>Hibabejelentő - bejelentkezés</title>
   </head>
-
   <body>
-    <header>
-      <nav>
-        <ul class="navbar">
-          <li class="home">
-            <a href="./index.html"><div>Suli</div></a>
-          </li>
-          <li class="navbar-toggle"><i class="fa fa-bars"></i></li>
-          <li class="navbar-link first">
-            <a href="./reporting.html"><div>Hibabejelentés</div></a>
-          </li>
-          <li class="navbar-link">
-            <a href="./reports.html"><div>Hibák</div></a>
-          </li>
-          <li class="navbar-link first active">
-            <a href="./login.html"><div>Bejelentkezés</div></a>
-          </li>
-          <li class="navbar-link">
-            <a href="./registration.html"><div>Regisztráció</div></a>
-          </li>
-          <li class="navbar-link last">
-            <a href="#"><div>Kijelentkezés</div></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+   <?php include 'navbar.php';?>
     <main>
       <div class="login">
         <img src="mediafiles/login.png" alt="login ábra" />
-        <form action="#" method="post">
+        <form action="login.php" method="post">
           <div class="row">
             <input
               type="text"
@@ -61,15 +48,15 @@
               required
             />
           </div>
+            <div id="message">
+                <p><strong><?php echo (isset($login->message)) ? $login->message : ""; ?></strong></p>
+            </div>
           <div class="row button">
             <input type="submit" name="login" value="Belépés" />
           </div>
         </form>
       </div>
     </main>
-    <footer>
-      <p><small>© 2022 Készítette Rózsa István & Hajagos Norbert</small></p>
-    </footer>
+    <?php include 'footer.html' ?>
   </body>
-  <script src="./scripts/navbar.js"></script>
 </html>

@@ -67,3 +67,9 @@ form .button input:hover {
     width: 100%;
   }
 }
+
+#message{
+  text-align: center;
+  color: #2EB086;
+  padding: 5px;
+}
