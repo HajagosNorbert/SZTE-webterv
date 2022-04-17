@@ -1,6 +1,8 @@
 # SZTE-webterv projektmunka
 
-Használadnó színek:
+## Kell csinálni
+
+## Használadnó színek:
 
 - #B8405E
 - #313552

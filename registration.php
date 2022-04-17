@@ -29,7 +29,7 @@ if(isset($_POST["registration"]) && isset($_POST["fullname"]) && isset($_POST["u
     <title>Hibabejelentő - regisztráció</title>
 </head>
 <body>
-<?php include 'navbar.php' ?>
+<?php $activePage = "registration"; include 'navbar.php' ?>
 <main>
     <div class="login">
         <img src="mediafiles/login.png" alt="login ábra" />
@@ -57,7 +57,7 @@ if(isset($_POST["registration"]) && isset($_POST["fullname"]) && isset($_POST["u
                 <input
                         type="password"
                         name="password"
-                        placeholder="Jelszó"
+                        placeholder="Jelszó (min. 6 karakter)"
                         required
                 />
             </div>

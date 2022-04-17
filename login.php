@@ -8,7 +8,6 @@ if(isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password
     $password = $_POST["password"];
     $login = json_decode($user->login($username,$password));
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -27,7 +26,9 @@ if(isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password
     <title>Hibabejelentő - bejelentkezés</title>
 </head>
 <body>
-<?php include 'navbar.php';?>
+<?php
+ $activePage = "login";
+ include 'navbar.php';?>
 <main>
     <div class="login">
         <img src="mediafiles/login.png" alt="login ábra" />
