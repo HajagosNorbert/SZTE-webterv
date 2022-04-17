@@ -180,16 +180,10 @@ class User{
         }
 
         if($usernameErr == "" && $passwordErr == "" && $password_againErr == "" && $fullnameErr == ""){
-            //$hashedPw = password_hash($password, PASSWORD_DEFAULT);
+            $hashedPw = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $this->db->prepare('INSERT INTO users (`name`, `username`, `password`, `group`) VALUES (?, ?, ?, ?)');
             if($stmt->execute(array($fullname,$username,$hashedPw, 0))){
                 $siker .= "Sikeres regisztráció!";
-                echo "<script>console.log('siker');</script>";
-            } else {
-                $err = $stmt->errorInfo();
-                print_r($err);
-                print($hashedPw);
-                echo "<script>console.log(".$err.");</script>";
             }
         }
         $response = [
@@ -209,31 +203,69 @@ class User{
         return $data;
     }
 
-    public function modifyUserData(array $data){
-        $d = [
-            'name' => $data[0],
-            'username' => $data[1],
-            'group' => $data[3],
-            'id' => $data[4]
+    public function modifyUserData($fullname, $username){
+        // $d = [
+        //     'name' => $data[0],
+        //     'username' => $data[1],
+        // ];
+        // $sql = "UPDATE `users` SET `name`= ?, `username`= ? WHERE id = ?";
+        // $stmt= $this->db->prepare($sql);
+        // $stmt->execute(array($d["name"],$d["username"],$d["group"],$d["id"]));
+
+
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?;");
+        $stmt->execute(array($username));
+        $data = $stmt->fetchObject();
+
+        if(empty($fullname)){
+            $fullnameErr .="Teljes név ne legyen üres";
+        }
+        if(empty($username)){
+            $usernameErr .="Felhasználó név ne legyen üres";
+        }
+        if(!empty($data) && $data->id != $_SESSION["user_id"]){
+            $usernameErr .= "Ezzel a felhasználóval már van fiók regisztrálva!";
+        }
+
+        if($usernameErr == "" && $fullnameErr == ""){
+            $stmt = $this->db->prepare("UPDATE `users` SET `name`= ?, `username`= ? WHERE id = ?");
+            if($stmt->execute(array($fullname, $username,$_SESSION["user_id"]))){
+                $siker .= "Sikeres regisztráció!";
+                header("location: profile.php");
+            }
+        }
+        $response = [
+            "fullnameError" => $fullnameErr,
+            "usernameError" => $usernameErr,
+            "passwordError" => $passwordErr,
+            "passwordAgainError" => $password_againErr,
+            "siker" => $siker
         ];
-        $sql = "UPDATE `users` SET `name`= ?, `username`= ?, `group`= ? WHERE id = ?";
-        $stmt= $this->db->prepare($sql);
-        $stmt->execute(array($d["name"],$d["username"],$d["group"],$d["id"]));
+        return json_encode($response);
     }
 
     public function changePassword(array $data){
         $s = $this->db->prepare("SELECT password FROM users WHERE id = ?;");
         $s->execute(array($data[2]));
         $dataa = $s->fetchObject();
-
         $msg = "";
 
-        if($data[0] == $dataa->password){
-            $sql = "UPDATE `users` SET `password`= ? WHERE id = ?";
-            $stmt= $this->db->prepare($sql);
-            $stmt->execute(array($data[1],$data[2]));
-        }else{
-            $msg .= "Hibás régi jelszó!";
+        if(!strlen(trim($data[0])) < 6) {
+            if(password_verify($data[0], $dataa->password)){
+                $hashedPw = password_hash($data[1], PASSWORD_DEFAULT);
+
+                
+                $sql = "UPDATE `users` SET `password`= ? WHERE id = ?";
+                $stmt= $this->db->prepare($sql);
+                $stmt->execute(array($hashedPw,$data[2]));
+
+                $err = $stmt->errorInfo();
+                $msg .= "Sikeres jelszómódosítás!";
+            }else{
+                $msg .= "Hibás régi jelszó!";
+            }
+        } else {    
+            $msg .= "A jelszó minimum 6 karakter kell legyen! ";
         }
 
         $response = [
@@ -251,6 +283,7 @@ class User{
             $sql = "UPDATE `users` SET `profile_img`= ? WHERE id = ?";
             $stmt= $this->db->prepare($sql);
             $stmt->execute(array($profileImageName, $id));
+            header("location: profile.php");
         }else{
             $msg .= "Nem sikerült a képfeltöltés próbáld újra!";
         }

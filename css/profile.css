@@ -8,6 +8,13 @@
     color: white;
 }
 
+.profile input[type=password], .changePw input[type=password] {
+    padding: 7px;
+    width: 30%;
+    margin: 10px;
+    outline: none;
+}
+
 .profile input[type=text], .changePw input[type=text] {
     padding: 7px;
     width: 30%;

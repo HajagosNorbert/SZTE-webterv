@@ -12,7 +12,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST["change_data"]))
     $username = $_POST["username"];
     $password = $_POST["password"];
     $group = $_POST["group"];
-    $user->modifyUserData(array($name, $username, $password, $group, $data->id));
+    $user->modifyUserData($name, $username);
     header("location: profile.php");
 }
 
@@ -45,8 +45,8 @@ if(isset($_GET["deleteAccount"])){
     <?php  $activePage = "profile"; include 'navbar.php' ?>
     <main>
         <div class="profile">
-        <img src="<?php echo (empty($data->profile_img)) ? "./img/profileavatar.webp" : "./profileimg/".$data->profile_img; ?>" width="150" alt="">
-            <form action="profile.php" method="post">
+        <img alt="profile" src="<?php echo (empty($data->profile_img)) ? "./img/profileavatar.webp" : "./profileimg/".$data->profile_img; ?>" width="150" >
+            <form action="./profile.php" method="post">
                 <label>Név</label>
                 <div>
                     <input type="text" name="name" value="<?php echo $data->name; ?>" id="">
@@ -55,13 +55,15 @@ if(isset($_GET["deleteAccount"])){
                 <div>
                     <input type="text" name="username" value="<?php echo $data->username; ?>" id="">
                 </div>
-                <div style="margin-top: 10px">
-                    <input type="submit" id="button" value="Módosítás" name="change_data">
-                    <a href="changepassword.php">Jelszó módosítás</a>
-                </div>
+                <input type="submit" id="button" value="Módosítás" name="change_data">
             </form>
+            <div style="margin-top: 25px">
+                <a id="button" href="./changepassword.php">Jelszó módosítás</a>
+            </div>
             <form action="profile.php" method="POST" enctype="multipart/form-data">
+
                 <div style="margin: 20px 0 20px 0">
+                <h3 style="margin: 20px 0">Kép feltöltése</h3>
                 <input type="file" name="file">
                 </div>
                 <input type="submit" value="Feltöltés" id="button" name="upload_img">

@@ -7,7 +7,7 @@ if(empty($_SESSION["user_id"]) && empty($_COOKIE["login"])){
 $user = new User();
 
 if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST["changePw"])){
-    $response = json_decode($user->changePassword(array($_POST["old_pw"], $_POST["new_pw"], $data->id)));
+    $response = json_decode($user->changePassword(array($_POST["old_pw"], $_POST["new_pw"],$_SESSION["user_id"])));
 }
 ?>
 <!DOCTYPE html>
@@ -32,11 +32,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST["changePw"])){
                 <form action="changepassword.php" method="post">
                     <label>Jelszó</label>
                     <div>
-                        <input type="text" name="old_pw" id="">
+                        <input type="password" name="old_pw" id="">
                     </div>
                     <label>Új jelszó</label>
                     <div>
-                        <input type="text" name="new_pw" id="">
+                        <input type="password" name="new_pw" id="" placeholder="Legalább 6 karakter">
                     </div>
                     <div>
                         <input type="submit" id="button" value="Módosítás" name="changePw">

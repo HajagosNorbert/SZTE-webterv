@@ -1,7 +1,7 @@
 # SZTE-webterv projektmunka
 
 ## Kell csinálni
-
+- page guardokat
 ## Használadnó színek:
 
 - #B8405E
