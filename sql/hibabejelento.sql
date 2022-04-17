@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Ápr 06. 14:53
+-- Létrehozás ideje: 2022. Ápr 17. 19:11
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 7.4.24
 
@@ -50,16 +50,17 @@ CREATE TABLE `users` (
   `name` varchar(40) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
-  `group` tinyint(4) NOT NULL
+  `group` tinyint(4) NOT NULL,
+  `profile_img` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `group`) VALUES
-(1, 'Rózsa István', 'admin', 'admin', 1),
-(9, 'Bob', 'VALAKI', '$2y$10$Ne2pZmCz21Oy4XX4EmPmiuiFavmDUc6dh', 1);
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `group`, `profile_img`) VALUES
+(9, 'Bob', 'VALAKI', '$2y$10$Ne2pZmCz21Oy4XX4EmPmiuiFavmDUc6dh', 1, ''),
+(12, 'Kiss József', 'jozsika69', 'banan12', 1, '');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -91,7 +92,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

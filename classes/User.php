@@ -109,9 +109,10 @@ class User{
             $stmt->execute(array($username));
             $user = $stmt->fetchObject();
             if($user){
-                if($user->password == $password){
+                if($password == $user->password){
                     $uid = $user->id;
                     $_SESSION["user_id"] = $uid;
+                    $_SESSION["user"] = $user;
                     $cookie_name = "login";
                     $cookie_value = $user->username;
                     setcookie($cookie_name,$cookie_value,time() + (86400 * 30), "/");
@@ -139,15 +140,13 @@ class User{
         session_destroy();
         header("location: index.php");
     }
-    public function registration($username, $password, $password_again){
+    public function registration($name, $username, $password, $password_again){
+        $nameErr = "";
         $usernameErr = "";
         $passwordErr = "";
         $password_againErr = "";
         $siker= "";
-        //felhasználónév tartalmaznia kell kis és nagy betűt is.
-        /*if(!preg_match("/^([A-Z][a-z]+)+$/",$username)){
-            $usernameErr .= "A felhasználónévnek tartalmaznia kell kis és nagy betűt is!";
-        }*/
+
 
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?;");
         $stmt->execute(array($username));
@@ -155,6 +154,9 @@ class User{
 
         if(!empty($data)){
             $usernameErr .= "Ezzel a felhasználóval már van fiók regisztrálva!";
+        }
+        if(strlen($name) < 7){
+            $nameErr .= "7 karakter hosszúnak kell lennie!";
         }
         if(strlen($password) < 6) {
             $passwordErr .= "A jelszó minimum 6 karakter kell legyen!";
@@ -164,20 +166,87 @@ class User{
             $passwordErr .= "A két jelszó nem egyezik!";
         }
 
-        if($usernameErr == "" && $passwordErr == "" && $password_againErr == ""){
-            $hashedPw = password_hash($password, PASSWORD_DEFAULT);
+        if($usernameErr == "" && $passwordErr == "" && $password_againErr == "" && $nameErr == ""){
+            //$hashedPw = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $this->db->prepare('INSERT INTO users (`name`, `username`, `password`, `group`) VALUES (?, ?, ?, ?)');
-            if($stmt->execute(array("Bob",$username,$hashedPw,1))){
+            if($stmt->execute(array($name,$username,$password,1))){
                 $siker .= "Sikeres regisztráció!";
             }
         }
         $response = [
+            "nameError" => $nameErr,
             "usernameError" => $usernameErr,
             "passwordError" => $passwordErr,
             "passwordAgainError" => $password_againErr,
             "siker" => $siker
         ];
         return json_encode($response);
+    }
+
+    public function getLoggedUserFromDb($id){
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?;");
+        $stmt->execute(array($id));
+        $data = $stmt->fetchObject();
+        return $data;
+    }
+
+    public function modifyUserData(array $data){
+        $d = [
+            'name' => $data[0],
+            'username' => $data[1],
+            'group' => $data[3],
+            'id' => $data[4]
+        ];
+        $sql = "UPDATE `users` SET `name`= ?, `username`= ?, `group`= ? WHERE id = ?";
+        $stmt= $this->db->prepare($sql);
+        $stmt->execute(array($d["name"],$d["username"],$d["group"],$d["id"]));
+    }
+
+    public function changePassword(array $data){
+        $s = $this->db->prepare("SELECT password FROM users WHERE id = ?;");
+        $s->execute(array($data[2]));
+        $dataa = $s->fetchObject();
+
+        $msg = "";
+
+        if($data[0] == $dataa->password){
+            $sql = "UPDATE `users` SET `password`= ? WHERE id = ?";
+            $stmt= $this->db->prepare($sql);
+            $stmt->execute(array($data[1],$data[2]));
+        }else{
+            $msg .= "Hibás régi jelszó!";
+        }
+
+        $response = [
+            "msg" => $msg
+        ];
+        return json_encode($response);
+    }
+
+    public function uploadImage($files, $id){
+        $msg = "";
+        $profileImageName = time() . '_' . $files["file"]["name"];
+        $target = 'profileimg/' . $profileImageName;
+        if(move_uploaded_file($files["file"]["tmp_name"],$target)){
+            $msg .= "Sikeres képfeltöltés!";
+            $sql = "UPDATE `users` SET `profile_img`= ? WHERE id = ?";
+            $stmt= $this->db->prepare($sql);
+            $stmt->execute(array($profileImageName, $id));
+        }else{
+            $msg .= "Nem sikerült a képfeltöltés próbáld újra!";
+        }
+        $response = [
+            "msg" => $msg
+        ];
+        return json_encode($response);
+    }
+
+    public function deleteAccount($id){
+        $sql = 'DELETE FROM `users` WHERE `users`.`id` = ?';
+        $stmt= $this->db->prepare($sql);
+        if($stmt->execute(array($id))){
+            $this->logout();
+        }
     }
 
 }

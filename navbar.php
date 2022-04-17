@@ -19,6 +19,9 @@
                 <li class="navbar-link">
                     <a href="reports.php"><div>Hibák</div></a>
                 </li>
+                <li class="navbar-link last">
+                <a href="profile.php"><div>Profile</div></a>
+            </li>
             <li class="navbar-link last">
                 <a href="logout.php"><div>Kijelentkezés</div></a>
             </li>
