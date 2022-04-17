@@ -42,7 +42,7 @@ if(isset($_GET["deleteAccount"])){
     <title>Suli hibabejelentő</title>
 </head>
 <body>
-    <?php include 'navbar.php' ?>
+    <?php  $activePage = "profile"; include 'navbar.php' ?>
     <main>
         <div class="profile">
         <img src="<?php echo (empty($data->profile_img)) ? "./img/profileavatar.webp" : "./profileimg/".$data->profile_img; ?>" width="150" alt="">

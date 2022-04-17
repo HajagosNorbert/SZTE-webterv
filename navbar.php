@@ -19,8 +19,8 @@
                 <li class="navbar-link <?= ($activePage === "reports")? "active" : "" ?>" >
                     <a href="reports.php"><div>Hibák</div></a>
                 </li>
-                <li class="navbar-link last">
-                <a href="profile.php"><div>Profile</div></a>
+                <li class="navbar-link <?= ($activePage === "profile")? "active" : "" ?>">
+                <a href="profile.php"><div>Profil</div></a>
             </li>
             <li class="navbar-link last">
                 <a href="logout.php"><div>Kijelentkezés</div></a>
