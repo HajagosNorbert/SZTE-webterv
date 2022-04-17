@@ -3,12 +3,12 @@ session_start();
 require_once 'classes/User.php';
 $user = new User();
 
-if(isset($_POST["registration"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["password_again"])){
-  $name = $_POST["name"];
+if(isset($_POST["registration"]) && isset($_POST["fullname"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["password_again"])){
+    $fullname = $_POST["fullname"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $pw_again = $_POST["password_again"];
-    $reg = json_decode($user->registration($name, $username, $password, $pw_again));
+    $reg = json_decode($user->registration($fullname, $username, $password, $pw_again));
 }
 
 ?>
@@ -29,20 +29,20 @@ if(isset($_POST["registration"]) && isset($_POST["username"]) && isset($_POST["p
     <title>Hibabejelentő - regisztráció</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+<?php $activePage = "registration"; include 'navbar.php' ?>
     <main>
       <div class="login">
         <img src="mediafiles/login.png" alt="login ábra" />
         <form action="registration.php" method="post">
-        <p><strong><?php echo (isset($reg->nameError)) ? $reg->nameError : ""; ?></strong></p>
-          <div class="row">
-            <input
-              type="text"
-              name="name"
-              placeholder="Név"
-              required
-            />
-          </div>
+        <p><strong><?php echo (isset($reg->fullnameError)) ? $reg->fullnameError : ""; ?></strong></p>
+            <div class="row">
+                <input
+                        type="text"
+                        name="fullname"
+                        placeholder="Teljes név"
+                        required
+                />
+            </div>
             <p><strong><?php echo (isset($reg->usernameError)) ? $reg->usernameError : ""; ?></strong></p>
           <div class="row">
             <input
@@ -57,7 +57,7 @@ if(isset($_POST["registration"]) && isset($_POST["username"]) && isset($_POST["p
             <input
               type="password"
               name="password"
-              placeholder="Jelszó"
+                        placeholder="Jelszó (min. 6 karakter)"
               required
             />
           </div>

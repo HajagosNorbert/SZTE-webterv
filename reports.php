@@ -20,7 +20,7 @@ if(empty($_SESSION["user_id"]) && empty($_COOKIE["login"])){
     <title>Suli hibabejelentő</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+<?php $activePage = "reports"; include 'navbar.php' ?>
     <main>
       <table>
         <caption>

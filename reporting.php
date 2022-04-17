@@ -20,7 +20,7 @@ if(empty($_SESSION["user_id"]) && empty($_COOKIE["login"])){
     <title>Hibabejelentő - regisztráció</title>
   </head>
   <body>
-  <?php include 'navbar.php' ?>
+<?php $activePage = "reporting"; include 'navbar.php' ?>
     <main>
       <div class="login">
         <form action="reporting.php" method="post">

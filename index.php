@@ -18,7 +18,7 @@ session_start();
     <title>Suli hibabejelentő</title>
   </head>
   <body>
-<?php include 'navbar.php' ?>
+<?php $activePage = "index"; include 'navbar.php' ?>
     <main>
       <section id="floating">
         <h1>Az alkalmazás ismertetése</h1>
