@@ -49,16 +49,16 @@ if(isset($_GET["deleteAccount"])){
             <form action="./profile.php" method="post">
                 <label>Név</label>
                 <div>
-                    <input type="text" name="name" value="<?php echo $data->name; ?>" id="">
+                    <input type="text" name="name" value="<?php echo $data->name; ?>">
                 </div>
                 <label>Felhasználónév</label>
                 <div>
-                    <input type="text" name="username" value="<?php echo $data->username; ?>" id="">
+                    <input type="text" name="username" value="<?php echo $data->username; ?>">
                 </div>
-                <input type="submit" id="button" value="Módosítás" name="change_data">
+                <input type="submit" class="button" value="Módosítás" name="change_data">
             </form>
             <div style="margin-top: 25px">
-                <a id="button" href="./changepassword.php">Jelszó módosítás</a>
+                <a class="button" href="./changepassword.php">Jelszó módosítás</a>
             </div>
             <form action="profile.php" method="POST" enctype="multipart/form-data">
 
@@ -66,8 +66,8 @@ if(isset($_GET["deleteAccount"])){
                 <h3 style="margin: 20px 0">Kép feltöltése</h3>
                 <input type="file" name="file">
                 </div>
-                <input type="submit" value="Feltöltés" id="button" name="upload_img">
-                <a id="button" href="profile.php?deleteAccount">Fiók törlése</a>
+                <input type="submit" value="Feltöltés" class="button" name="upload_img">
+                <a class="button" href="profile.php?deleteAccount">Fiók törlése</a>
             </form>
             <div><?php echo (isset($msg->msg)) ? $msg->msg : "" ?></div>
         </div>

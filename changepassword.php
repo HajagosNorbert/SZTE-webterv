@@ -39,7 +39,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) == "POST" && isset($_POST["changePw"])){
                         <input type="password" name="new_pw" id="" placeholder="Legalább 6 karakter">
                     </div>
                     <div>
-                        <input type="submit" id="button" value="Módosítás" name="changePw">
+                        <input type="submit" class="button" value="Módosítás" name="changePw">
                     </div>
                     <p><?php echo (isset($response->msg)) ? $response->msg : ""; ?></p>
                 </form>
