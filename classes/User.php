@@ -168,9 +168,6 @@ class User{
         if(!empty($data)){
             $usernameErr .= "Ezzel a felhasználóval már van fiók regisztrálva!";
         }
-        if(strlen($name) < 7){
-            $nameErr .= "7 karakter hosszúnak kell lennie!";
-        }
         if(strlen($password) < 6) {
             $passwordErr .= "A jelszó minimum 6 karakter kell legyen!";
         }
@@ -211,6 +208,12 @@ class User{
         // $sql = "UPDATE `users` SET `name`= ?, `username`= ? WHERE id = ?";
         // $stmt= $this->db->prepare($sql);
         // $stmt->execute(array($d["name"],$d["username"],$d["group"],$d["id"]));
+
+        $fullnameErr = "";
+        $usernameErr = "";
+        $siker = "";
+        $password_againErr = "";
+        $passwordErr = "";
 
 
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?;");
@@ -253,8 +256,6 @@ class User{
         if(!strlen(trim($data[0])) < 6) {
             if(password_verify($data[0], $dataa->password)){
                 $hashedPw = password_hash($data[1], PASSWORD_DEFAULT);
-
-                
                 $sql = "UPDATE `users` SET `password`= ? WHERE id = ?";
                 $stmt= $this->db->prepare($sql);
                 $stmt->execute(array($hashedPw,$data[2]));
