@@ -109,7 +109,7 @@ class User{
             $stmt->execute(array(trim($username)));
             $user = $stmt->fetchObject();
             if($user){
-                if($user->password == $password){
+                if(password_verify($password, $user->password)){
                     $uid = $user->id;
                     $_SESSION["user_id"] = $uid;
                     $cookie_name = "login";
@@ -177,7 +177,7 @@ class User{
         if($usernameErr == "" && $passwordErr == "" && $password_againErr == "" && $fullnameErr == ""){
             $hashedPw = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $this->db->prepare('INSERT INTO users (`name`, `username`, `password`, `group`) VALUES (?, ?, ?, ?)');
-            if($stmt->execute(array("Bob",$username,$hashedPw,1))){
+            if($stmt->execute(array($fullname,$username,$hashedPw, 0))){
                 $siker .= "Sikeres regisztráció!";
                 echo "<script>console.log('siker');</script>";
             } else {
