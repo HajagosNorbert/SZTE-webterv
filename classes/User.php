@@ -106,7 +106,7 @@ class User{
     public function login($username, $password){
             $message = "";
             $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?;");
-            $stmt->execute(array($username));
+            $stmt->execute(array(trim($username)));
             $user = $stmt->fetchObject();
             if($user){
                 if($user->password == $password){
@@ -139,7 +139,11 @@ class User{
         session_destroy();
         header("location: index.php");
     }
-    public function registration($username, $password, $password_again){
+    public function registration($fullname, $username, $password, $password_again){
+
+        $username = trim($username);
+        $fullname = trim($fullname);
+        $fullnameErr = "";
         $usernameErr = "";
         $passwordErr = "";
         $password_againErr = "";
@@ -153,6 +157,12 @@ class User{
         $stmt->execute(array($username));
         $data = $stmt->fetchObject();
 
+        if(empty($fullname)){
+            $fullnameErr .="Teljes név ne legyen üres";
+        }
+        if(empty($username)){
+            $usernameErr .="Felhasználó név ne legyen üres";
+        }
         if(!empty($data)){
             $usernameErr .= "Ezzel a felhasználóval már van fiók regisztrálva!";
         }
@@ -164,14 +174,21 @@ class User{
             $passwordErr .= "A két jelszó nem egyezik!";
         }
 
-        if($usernameErr == "" && $passwordErr == "" && $password_againErr == ""){
+        if($usernameErr == "" && $passwordErr == "" && $password_againErr == "" && $fullnameErr == ""){
             $hashedPw = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $this->db->prepare('INSERT INTO users (`name`, `username`, `password`, `group`) VALUES (?, ?, ?, ?)');
             if($stmt->execute(array("Bob",$username,$hashedPw,1))){
                 $siker .= "Sikeres regisztráció!";
+                echo "<script>console.log('siker');</script>";
+            } else {
+                $err = $stmt->errorInfo();
+                print_r($err);
+                print($hashedPw);
+                echo "<script>console.log(".$err.");</script>";
             }
         }
         $response = [
+            "fullnameError" => $fullnameErr,
             "usernameError" => $usernameErr,
             "passwordError" => $passwordErr,
             "passwordAgainError" => $password_againErr,
