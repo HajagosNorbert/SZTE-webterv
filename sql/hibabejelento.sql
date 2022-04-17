@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Létrehozás ideje: 2022. Ápr 17. 19:11
+-- Generation Time: Apr 17, 2022 at 11:06 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -49,17 +49,17 @@ CREATE TABLE `users` (
   `name` varchar(40) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `group` tinyint(4) NOT NULL,
+  `group` tinyint NOT NULL,
   `profile_img` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `group`, `profile_img`) VALUES
-(9, 'Bob', 'VALAKI', '$2y$10$Ne2pZmCz21Oy4XX4EmPmiuiFavmDUc6dh', 1, ''),
-(10, 'Bob', 'asd123', '$2y$10$IHV2EZYxI/UlHwivnOcIhuTv5yWRWsS.W2iQ2OiCWGsGB1L4pl5ha', 1);
-(12, 'Kiss József', 'jozsika69', 'banan12', 1, '');
+(11, 'Bob', 'asd', '$2y$10$HulfHu/dvm2sAX0syGine.2Spyz9T2FHJgXQyHQP3OkdPH43c/uKC', 1, ''),
+(14, 'Norbert Robi', 'admin', '$2y$10$KQT3LVMJOIRAQz7U/HGFs.sHeneL40nA2ltVt0aUg8pg3uZ4NlkN.', 0, '1650228737_profile.jpg');
 
 --
 -- Indexes for dumped tables
@@ -91,7 +91,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
